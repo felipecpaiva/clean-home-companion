@@ -1,0 +1,18 @@
+# Chromecast with Google TV 4K (sabrina), Google TV 14. One package per line. Disabled, never uninstalled.
+# Source: cleanyourtv (MIT, Gathin23) examples/google-chromecast-gtv-4k/debloat.txt, minus the stock launcher and setup wizard.
+# NOT in this list on purpose: com.google.android.apps.tv.launcherx (Home, Accounts page, YouTube button) and
+# com.google.android.tungsten.setupwraith (disabling it breaks casting and can trap Home on a recovery screen).
+com.google.android.feedback
+com.android.tv.feedbackconsent
+com.google.android.tv.remotecontrol.logging
+com.google.android.apps.tv.netoscope
+com.google.android.federatedcompute
+com.google.android.ondevicepersonalization.services
+com.google.android.adservices.api
+com.google.android.ext.adservices.api
+com.google.android.play.games
+com.google.android.videos
+com.android.printspooler
+com.google.android.marvin.talkback
+com.google.android.apps.tv.dreamx
+com.google.android.backdrop

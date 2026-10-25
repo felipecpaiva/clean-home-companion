@@ -1,0 +1,1 @@
+`scripts/debloat-safe.txt` is derived from the Chromecast with Google TV 4K list in cleanyourtv (https://github.com/Gathin23/cleanyourtv, MIT, Copyright (c) Gathin23). The MIT notice of that project applies to that list.
