@@ -145,10 +145,10 @@ On the TV, turn **Wireless debugging** off again (Developer options).
 | `Home changed after ...` | The script already undid its changes. Run `status` and tell us. |
 | The TV shows a Google setup or recovery screen after a step | Run `adb shell pm enable --user 0 com.google.android.apps.tv.launcherx`. Do **not** restart the TV. |
 | Casting says "Untrusted device" | Something turned off Google's setup wizard (this script never does). Run `restore`, then turn the wizard back on: `adb shell pm enable --user 0 com.google.android.tungsten.setupwraith`. |
-| The screensaver is black (no photos) | This script never touches it. See the note below. |
+| The screensaver is black (no photos) | This script never touches it. See "A black screensaver" below. |
 
 ## A black screensaver
-If your Google Photos screensaver shows only a black screen with the clock, the screensaver app could not load the pictures. We saw this on one TV that this script never touched. We are still testing the fix. The next step to try is clearing app caches (`adb shell cmd package trim-caches 4G`), which keeps all app data. Result will be added here.
+If your Google Photos screensaver shows only a black screen with the clock, the screensaver app could not load the pictures. We saw this on one TV that this script never touched. Clearing app caches fixed it there (`adb shell cmd package trim-caches 4G`; it keeps all app data), then stop the screensaver app once (`adb shell am force-stop com.google.android.apps.tv.dreamx`) so it reloads. A few pictures still failed to load afterwards, so we are watching it.
 
 ## Questions
 **Is it safe?** Everything is `pm disable-user`, which Android lets you undo at any time. Nothing is deleted. A built-in block refuses core apps, Google's home screen, the setup wizard and the screensaver.
