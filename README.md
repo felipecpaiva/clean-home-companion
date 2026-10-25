@@ -1,6 +1,6 @@
 # Clean Home Companion
 
-Free helper for [Clean Home](https://play.google.com/) (the TV launcher). It does the small one-time jobs a TV will not let an app do alone. You can read every command it runs, right here.
+Free helper for Clean Home (the TV launcher, coming to Google Play). It does the small one-time jobs a TV will not let an app do alone. You can read every command it runs, right here.
 
 Status: early. The computer script works. The phone app is planned.
 
