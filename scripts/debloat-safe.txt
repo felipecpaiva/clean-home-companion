@@ -1,5 +1,6 @@
 # Chromecast with Google TV 4K (sabrina), Google TV 14. One package per line. Disabled, never uninstalled.
 # Source: cleanyourtv (MIT, Gathin23) examples/google-chromecast-gtv-4k/debloat.txt, minus the stock launcher and setup wizard.
+# Also left out: com.google.android.apps.tv.dreamx and com.google.android.backdrop. They are Google ambient mode, the idle screen that shows a Google Photos album. Checked on a real TV: dreamx/.service.Backdrop is the active screensaver.
 # NOT in this list on purpose: com.google.android.apps.tv.launcherx (Home, Accounts page, YouTube button) and
 # com.google.android.tungsten.setupwraith (disabling it breaks casting and can trap Home on a recovery screen).
 com.google.android.feedback
@@ -14,5 +15,3 @@ com.google.android.play.games
 com.google.android.videos
 com.android.printspooler
 com.google.android.marvin.talkback
-com.google.android.apps.tv.dreamx
-com.google.android.backdrop

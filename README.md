@@ -17,6 +17,7 @@ Status: early. The computer script works. The phone app is planned.
 - Uninstall anything. It only uses `pm disable-user`, which can always be undone.
 - Touch Google's home screen (`launcherx`) or the setup wizard (`setupwraith`). Disabling those breaks casting and can trap the TV on a recovery screen. They are not in the list, and a built-in block refuses them even if you add them.
 - Touch core Android packages (permissions, installer, system UI, providers).
+- Touch Google ambient mode (`dreamx`, `backdrop`): that is the idle screen that shows your Google Photos album.
 - Change anything on a dry run. `debloat` only shows a plan until you add `--apply`.
 
 If Home shows a recovery or setup screen after a step, the script turns everything it changed back on and stops.

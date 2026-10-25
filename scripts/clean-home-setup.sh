@@ -19,7 +19,7 @@ a() { adb -s "$TV" "$@"; }
 sh() { adb -s "$TV" shell "$@" </dev/null | tr -d "\r"; }
 die() { echo "STOP: $*" >&2; exit 1; }
 # Never touch these, whatever a list says.
-NEVER='^(android|com\.android\.(systemui|shell|phone|settings|tv\.settings|permissioncontroller|packageinstaller|providers\..*|ext\.services|ext\.shared|modulemetadata)|com\.google\.android\.(permissioncontroller|packageinstaller|ext\.services|ext\.shared|modulemetadata|overlay\.modules.*|apps\.tv\.launcherx|tvlauncher|tungsten\.setupwraith|gms|gsf|vending|katniss|apps\.mediashell|tv\.remote\.service|inputmethod\.latin)|com\.cleanhome\.tv)$'
+NEVER='^(android|com\.android\.(systemui|shell|phone|settings|tv\.settings|permissioncontroller|packageinstaller|providers\..*|ext\.services|ext\.shared|modulemetadata)|com\.google\.android\.(permissioncontroller|packageinstaller|ext\.services|ext\.shared|modulemetadata|overlay\.modules.*|apps\.tv\.launcherx|apps\.tv\.dreamx|backdrop|tvlauncher|tungsten\.setupwraith|gms|gsf|vending|katniss|apps\.mediashell|tv\.remote\.service|inputmethod\.latin)|com\.cleanhome\.tv)$'
 
 home_ok() {  # Home must not be a recovery or setup screen
   local f; f=$(sh dumpsys activity activities | grep -m1 mFocusedApp)
@@ -75,7 +75,6 @@ cmd_debloat() {
     home_ok || { echo "Home changed after $p. Undoing everything."; cmd_restore; die "stopped; nothing left disabled by this tool"; }
   done
   echo "done. Cast from a phone once to check casting still works. Then turn Wireless debugging off on the TV."
-  echo "note: with the Google screensaver off, pick another in Settings > System > Ambient mode if the TV shows a blank screen."
 }
 
 cmd_restore() {
