@@ -144,8 +144,11 @@ On the TV, turn **Wireless debugging** off again (Developer options).
 | `STOP: the list holds a protected package` | The script refuses to touch core apps. Remove that line from the list. |
 | `Home changed after ...` | The script already undid its changes. Run `status` and tell us. |
 | The TV shows a Google setup or recovery screen after a step | Run `adb shell pm enable --user 0 com.google.android.apps.tv.launcherx`. Do **not** restart the TV. |
-| Casting says "Untrusted device" | Something turned off Google's setup wizard. Run `restore`, then restart the TV once. |
-| The screensaver is black | Not caused by this script (it never touches it). Clear caches: `adb shell cmd package trim-caches 4G`. |
+| Casting says "Untrusted device" | Something turned off Google's setup wizard (this script never does). Run `restore`, then turn the wizard back on: `adb shell pm enable --user 0 com.google.android.tungsten.setupwraith`. |
+| The screensaver is black (no photos) | This script never touches it. See the note below. |
+
+## A black screensaver
+If your Google Photos screensaver shows only a black screen with the clock, the screensaver app could not load the pictures. We saw this on one TV that this script never touched. We are still testing the fix. The next step to try is clearing app caches (`adb shell cmd package trim-caches 4G`), which keeps all app data. Result will be added here.
 
 ## Questions
 **Is it safe?** Everything is `pm disable-user`, which Android lets you undo at any time. Nothing is deleted. A built-in block refuses core apps, Google's home screen, the setup wizard and the screensaver.
