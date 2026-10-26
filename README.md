@@ -161,5 +161,10 @@ If your Google Photos screensaver shows only a black screen with the clock, the 
 
 **What about a phone app?** Planned. It will do the same steps from an Android phone, and it will live in this repo.
 
+## Web pages (for Google Play)
+Sources are in `docs/`. These addresses work only **after Pages is on** (GitHub Pages, branch `main`, folder `/docs`). Pages is not on yet.
+- Privacy policy: https://felipecpaiva.github.io/clean-home-companion/privacy.html
+- Watch Next how-to: https://felipecpaiva.github.io/clean-home-companion/watch-next.html
+
 ## Licence
 MIT. See `LICENSE` and `NOTICE.md`.
