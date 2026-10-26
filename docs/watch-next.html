@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Turn on Watch Next in Clean Home</title><style>:root{color-scheme:light dark;--bg:#fff;--fg:#1b1b1f;--mut:#5c5c66;--ln:#d8d8de;--ac:#0b57d0}@media(prefers-color-scheme:dark){:root{--bg:#131316;--fg:#e8e8ec;--mut:#a0a0ab;--ln:#34343c;--ac:#8ab4f8}}body{margin:0 auto;max-width:42rem;padding:1rem 16px 3rem;background:var(--bg);color:var(--fg);font:1.0625rem/1.6 system-ui,sans-serif}h1{font-size:1.75rem}h2{font-size:1.25rem;margin-top:2rem;border-top:1px solid var(--ln);padding-top:1rem}a{color:var(--ac)}code,pre{font:.9rem ui-monospace,monospace;background:color-mix(in srgb,var(--fg) 8%,transparent);border-radius:4px}code{padding:.1rem .3rem}pre{padding:.75rem;overflow-x:auto}.mut{color:var(--mut)}</style></head><body>
+<p><a href="index.html">Clean Home</a></p>
+<h1>Turn on Watch Next</h1>
+<p>Watch Next shows the Continue Watching cards of the app you focus. It is off by default. Android does not show a permission box for it on a TV. You grant it once from a computer. It takes about 5 minutes.</p>
+
+<h2>What you need</h2>
+<ul>
+<li>Clean Home installed on the TV.</li>
+<li>A computer with <code>adb</code> (<a href="https://developer.android.com/tools/releases/platform-tools">Android platform-tools</a>).</li>
+<li>The TV and the computer on the same Wi-Fi.</li>
+</ul>
+
+<h2>1. Turn on debugging on the TV</h2>
+<ol>
+<li>Open <b>Settings</b>, then <b>System</b>, then <b>About</b>.</li>
+<li>Scroll to <b>Android TV OS build</b>.</li>
+<li>Press <b>OK</b> on it 7 times.</li>
+<li>Press <b>Back</b>.</li>
+<li>Open <b>Developer options</b> in <b>Settings, System</b>.</li>
+<li>Turn on <b>Wireless debugging</b>. If your TV has no such item, turn on <b>USB debugging</b> and connect with a USB cable instead.</li>
+<li>Leave the screen open. It shows the <b>IP address and port</b>.</li>
+</ol>
+
+<h2>2. Pair the computer (first time only)</h2>
+<ol>
+<li>On the TV, choose <b>Pair device with pairing code</b>.</li>
+<li>On the computer, run this with the pairing IP and pairing port from the TV:<pre>adb pair IP:PAIRING_PORT</pre></li>
+<li>Type the 6-digit code.</li>
+<li>Run this with the main IP and port:<pre>adb connect IP:PORT</pre></li>
+<li>Run <code>adb devices</code>. The TV should show as <code>device</code>.</li>
+<li>If the TV asks to allow debugging, choose <b>Allow</b>.</li>
+</ol>
+<p class="mut">The port changes after the TV restarts. Read it again on the TV.</p>
+
+<h2>3. Grant access</h2>
+<p>Run this one command:</p>
+<pre>adb shell pm grant com.cleanhome.tv android.permission.READ_TV_LISTINGS</pre>
+<p>If more than one device is connected, add <code>-s IP:PORT</code> after <code>adb</code>.</p>
+
+<h2>4. Turn it on in the app</h2>
+<ol>
+<li>Open Clean Home on the TV.</li>
+<li>Open <b>Settings</b>, then <b>Watch Next</b>.</li>
+<li>Set <b>Show on Home</b> to <b>On</b>.</li>
+</ol>
+
+<h2>5. Check that it worked</h2>
+<ol>
+<li>In Clean Home, focus an app that has Continue Watching items, such as a streaming app you used lately. Cards should appear.</li>
+<li>If the Watch Next page says access is missing, repeat step 3.</li>
+<li>To check from the computer, run:<pre>adb shell dumpsys package com.cleanhome.tv | grep READ_TV_LISTINGS</pre>It should print <code>granted=true</code>.</li>
+<li>If access is granted and no cards show, the app you focused may have published none. Watch something in that app first.</li>
+</ol>
+
+<h2>6. Turn debugging off</h2>
+<ol>
+<li>On the TV, open <b>Developer options</b>.</li>
+<li>Turn <b>Wireless debugging</b> (or <b>USB debugging</b>) off.</li>
+</ol>
+<p>The grant stays after debugging is off.</p>
+
+<h2>Undo</h2>
+<ol>
+<li>To stop showing cards, set <b>Settings, Watch Next, Show on Home</b> to <b>Off</b>. Clean Home then reads nothing and clears its poster cache.</li>
+<li>To take the permission back, turn debugging on again (steps 1 and 2) and run:<pre>adb shell pm revoke com.cleanhome.tv android.permission.READ_TV_LISTINGS</pre></li>
+</ol>
+
+<p>See the <a href="privacy.html">privacy policy</a> for what Watch Next reads and fetches. Problems: <a href="https://github.com/felipecpaiva/clean-home-companion/issues">open an issue</a>.</p>
+</body></html>
